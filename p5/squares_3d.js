@@ -4,11 +4,15 @@ let numShapes = 16;
 let pos = 0;
 let elem = 0;
 
+let cam;
+
 
 function setup() {
   createCanvas(800, 800, WEBGL);
 
-  fullscreen();
+  //fullscreen();
+
+  cam = createCamera();
 
   perspective(PI / 3.0, width / height, 0.1, 500000);
   

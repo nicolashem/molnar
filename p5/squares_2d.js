@@ -13,9 +13,8 @@ function setup() {
   slider = createSlider(0, 255, 255);
   slider.position(10, 10);
   slider.style('width', '120px');
-  slider.style('background', 'red');
 
-  slider2 = createSlider(0, 20, 10);
+  slider2 = createSlider(0, 100, 10);
   slider2.position(10, 30);
   slider2.style('width', '120px');
 
@@ -42,6 +41,14 @@ function setup() {
   slider8 = createSlider(-200, 200, 0);
   slider8.position(10, 150);
   slider8.style('width', '120px');
+
+  slider9 = createSlider(0, 10, 1, 0.1);
+  slider9.position(10, 170);
+  slider9.style('width', '120px');
+
+  slider10 = createSlider(1, 100, 50);
+  slider10.position(10, 190);
+  slider10.style('width', '120px');
 }
 
 function draw() {
@@ -70,9 +77,17 @@ function draw() {
 
   let val8 = slider8.value();
 
+  let val9 = slider9.value();
+
+  let val10 = slider10.value();
+  square = val10
+
   randomSeed(val3)
 
+  
+
   translate(val7,val8)
+  scale(val9)
   
   for(let x = 0; x < cellsX; x++){
     for(let y = 0; y < cellsY; y++){

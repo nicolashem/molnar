@@ -1,6 +1,6 @@
 
 let shapesArray = [];
-let numShapes = 25;
+let numShapes = 16;
 let pos = 0;
 let elem = 0;
 
@@ -27,7 +27,7 @@ class Shape {
     let numRect = 15;
     
     for (let i = 0; i < numRect; i++){
-      rectArray.push(new Rectangle(0, 0, i * 30, 100 + i * 50, 30));
+      rectArray.push(new Rectangle(0, 0, i * 100, 100 + i * 50, 30));
     }
     this.rectangles = rectArray
   }
@@ -45,8 +45,8 @@ class Rectangle {
   constructor(centerX, centerY, centerZ, edgeL, zDepth){
     this.zDepth = zDepth
     // eigenschaften
-    let maxNoise = 30;
-    let minNoise = 1;
+    let maxNoise = 40;
+    let minNoise = 10;
     let noise1 = random(minNoise, maxNoise);
     let noise2 = random(minNoise, maxNoise);
     let noise3 = random(minNoise, maxNoise);
@@ -159,18 +159,16 @@ function draw() {
 
   orbitControl();
 
-  if (elem >= 1){         // elem = 9
-          elem = 0;
-      }
+  elem = 0;
 
 
-  for (let x = 0; x < 5000; x += 1000) {
-      for (let y = 0; y < 5000; y += 1000) {
+  for (let x = 0; x < 4000; x += 1000) {
+      for (let y = 0; y < 4000; y += 1000) {
           push();
 
           translate(x, y, 0);
           
-          shapesArray[elem].display(frameCount/400 + x * y);
+          shapesArray[elem].display(frameCount/40 + x * y);
           pop();
 
           elem++;

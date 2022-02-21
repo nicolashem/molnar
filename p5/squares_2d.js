@@ -83,9 +83,6 @@ function draw() {
   square = val10
 
   randomSeed(val3)
-
-  
-
   translate(val7,val8)
   scale(val9)
   

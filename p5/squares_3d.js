@@ -10,6 +10,10 @@ let cam;
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
 
+  slider = createSlider(1, 100, 255);
+  slider.position(10, 10);
+  slider.style('width', '120px');
+
   cam = createCamera();
    
   perspective(PI / 3.0, width / height, 0.1, 500000);

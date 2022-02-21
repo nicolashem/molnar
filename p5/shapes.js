@@ -25,6 +25,10 @@ function setup() {
     slider4 = createSlider(1, 60, 1, 1);
     slider4.position(10, 70);
     slider4.style('width', '120px');
+
+    slider5 = createSlider(1, 20, 1, 1);
+    slider5.position(10, 90);
+    slider5.style('width', '120px');
     
 }
 
@@ -34,11 +38,12 @@ let val1 = slider.value();
 let val2 = slider2.value();
 let val3 = slider3.value();
 let val4 = slider4.value();
+let val5 = slider5.value();
 
 noFill();
 strokeWeight(val4);
 
-
+scale(val5);
 
 square = val2;
 cells = val3;

@@ -1,12 +1,12 @@
 
 
 let button;
-let square = 50;
+
 let distance = 70;
 let cellsX = 7;
 let cellsY = 10;
 let offset = -cellsX/2 * distance
-let sizes = [0, 0, square, square * 0.9, square * 0.8, square * 0.7, square * 0.6, square * 0.5, square * 0.4, square * 0.3, square * 0.2, square * 0.1];
+
 
 //////////////////save_image///////////////////
 function saveImage() {
@@ -25,7 +25,7 @@ function setup() {
   button.addClass('button');
 
 
-  slider = createSlider(0, 255, 255);
+  slider = createSlider(1, 200, 50);
   slider.parent('menu-id')
   slider.addClass('slider');
 
@@ -61,30 +61,37 @@ function setup() {
   slider9.parent('menu-id')
   slider9.addClass('slider');
 
-
   slider10 = createSlider(1, 100, 50);
-  //slider10.position(10, 190);
-  //slider10.style('width', '120px');
   slider10.parent('menu-id')
   slider10.addClass('slider');
 
-
   slider11 = createSlider(1, 60, 1);
-  //slider11.position(10, 210);
-  //slider11.style('width', '120px');
   slider11.parent('menu-id')
   slider11.addClass('slider');
+
+  slider12 = createSlider(0, 360, 1);
+  slider12.parent('menu-id')
+  slider12.addClass('slider');
+
+  slider13 = createSlider(0, 100, 50);
+  slider13.parent('menu-id')
+  slider13.addClass('slider');
+
+  slider14 = createSlider(0, 100, 50);
+  slider14.parent('menu-id')
+  slider14.addClass('slider');
 
 }
 
 function draw() {
   //background(255);
 
-  
+  //(windowWidth/2, windowHeight/2)
 
+
+  ///////////////////////sliders////////////////////////
   let val1 = slider.value();
-  background(val1);
-
+  
   let val2 = slider2.value();
   let diceStep = val2
 
@@ -105,15 +112,26 @@ function draw() {
   let val9 = slider9.value();
 
   let val10 = slider10.value();
-  square = val10
+  
 
   let strokeW = slider11.value();
+  ///////////colors////////////////
+
+  colorMode(HSL)
+  let H = slider12.value();
+  let S = slider13.value();
+  let L = slider14.value();
+
+  background(H, S, L);
+  ////////////////////////////////
 
   randomSeed(randomS)
-
   translate(translX,translY)
-
   strokeWeight(strokeW)
+
+  let square = 50;
+  square = val1;
+  let sizes = [0, 0, square, square * 0.9, square * 0.8, square * 0.7, square * 0.6, square * 0.5, square * 0.4, square * 0.3, square * 0.2, square * 0.1];
 
   // push()
   // translate(windowWidth, windowHeight)
@@ -138,13 +156,13 @@ function draw() {
           let dice7 = random() * diceStep
           let dice8 = random() * diceStep
 
-          square = sizes[dice];
+          blob = sizes[dice];
 
           let path = [
-            {x: xpos - square / 2 - dice2, y: ypos - square / 2 - dice2},
-            {x: xpos + square / 2 - dice3, y: ypos - square / 2 - dice4},
-            {x: xpos + square / 2 - dice5, y: ypos + square / 2 - dice6},
-            {x: xpos - square / 2 - dice7, y: ypos + square / 2 - dice8}
+            {x: xpos - blob / 2 - dice2, y: ypos - blob / 2 - dice2},
+            {x: xpos + blob / 2 - dice3, y: ypos - blob / 2 - dice4},
+            {x: xpos + blob / 2 - dice5, y: ypos + blob / 2 - dice6},
+            {x: xpos - blob / 2 - dice7, y: ypos + blob / 2 - dice8}
           ];
           noFill()
           beginShape();

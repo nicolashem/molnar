@@ -8,12 +8,10 @@ let cam;
 
 
 function setup() {
-  createCanvas(800, 800, WEBGL);
-
-  //fullscreen();
+  createCanvas(windowWidth, windowHeight, WEBGL);
 
   cam = createCamera();
-
+   
   perspective(PI / 3.0, width / height, 0.1, 500000);
   
   for (let i = 0; i < numShapes; i++){
@@ -31,7 +29,7 @@ class Shape {
     let numRect = 15;
     
     for (let i = 0; i < numRect; i++){
-      rectArray.push(new Rectangle(0, 0, i * 100, 100 + i * 50, 30));
+      rectArray.push(new Rectangle(0, 0, i * 100, 100 + i * 50, i * 10 + 30));
     }
     this.rectangles = rectArray
   }
@@ -48,7 +46,7 @@ class Shape {
 class Rectangle {
   constructor(centerX, centerY, centerZ, edgeL, zDepth){
     this.zDepth = zDepth
-    // eigenschaften
+    
     let maxNoise = 40;
     let minNoise = 10;
     let noise1 = random(minNoise, maxNoise);
@@ -59,8 +57,7 @@ class Rectangle {
     let noise6 = random(minNoise, maxNoise);
     let noise7 = random(minNoise, maxNoise);
     let noise8 = random(minNoise, maxNoise);
-    
-    this.foo = random(1, 10);
+
     
     this.p1 = {
       x: centerX - edgeL/2 + noise1,
@@ -141,18 +138,7 @@ class Rectangle {
     vertex (this.p2.x, this.p2.y, this.p2.z * offset+ this.zDepth)
     endShape(CLOSE);
   }
-  
-  move() {
-    const angle = (frameCount/2 + this.foo) * 0.1
-    this.p1.z += sin(angle)
-    this.p2.z += sin(angle)
-    this.p3.z += sin(angle)
-    this.p4.z += sin(angle)
-    this.p5.z += sin(angle)
-    this.p6.z += sin(angle)
-    this.p7.z += sin(angle)
-    this.p8.z += sin(angle)
-  }
+
 }
 
 function draw() {
@@ -172,7 +158,7 @@ function draw() {
 
           translate(x, y, 0);
           
-          shapesArray[elem].display(frameCount/40 + x * y);
+          shapesArray[elem].display(frameCount/40 + x);
           pop();
 
           elem++;

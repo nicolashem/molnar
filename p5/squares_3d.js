@@ -167,41 +167,6 @@ function draw() {
 
           elem++;
       }
-      //console.log(elem);
       
   }
-
-
-
-
-  
-  // for (let j = 0; j < numShapes; j++){
-  //   for (let x = 0; x < 3000; x += 1000) {
-  //     for (let y = 0; y < 3000; y += 1000) {
-      
-  //       push();
-    
-  //       translate(x, y, 0);
-    
-  //       shapesArray[j].display();
-    
-  //       pop(); 
-  //     }
-  //   }
-  // } 
-  
-  // for (let x = 0; x < 3000; x += 1000) {
-  //   for (let y = 0; y < 3000; y += 1000) {
-  //     for (let i = 0; i < 9; i++){
-  
-  //       push();
-  
-  //       translate(x, y, 0);
-
-  //       shapesArray[i].display();
-  //       pop();
-  
-  //    }
-  //   }
-  // } 
 }

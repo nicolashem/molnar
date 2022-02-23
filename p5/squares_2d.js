@@ -1,6 +1,11 @@
 
-
 let button;
+let button1;
+
+// let colorSwitch = false;
+
+let colorPicker;
+let colorPicker2;
 
 let distance = 70;
 let cellsX = 7;
@@ -8,21 +13,41 @@ let cellsY = 10;
 let offset = -cellsX/2 * distance
 
 
-//////////////////save_image///////////////////
+
+///////////////////////////////////////////////////////
+
+
 function saveImage() {
   saveCanvas('wallpaper', 'jpg');
 }
+
+// function colorizer() {
+//   colorSwitch = !colorSwitch;
+// }
 
 function setup() {
 
   const cnv = createCanvas(600, 800);
   cnv.parent('p5-canvas-id')
 
+  colorMode(HSL)
 
-  button = createButton('save image');
-  button.mousePressed(saveImage);
-  button.parent('menu-id')
-  button.addClass('button');
+  colorPicker = createColorPicker('#ed225d');
+  colorPicker.position(0, height + 5);
+
+  colorPicker2 = createColorPicker('#ed225d');
+  colorPicker2.position(0, height-50);
+
+  // button = createButton('color on/off');
+  // button.mousePressed(colorizer);
+  // button.parent('menu-id')
+  // button.addClass('button');
+
+
+  button1 = createButton('save image');
+  button1.mousePressed(saveImage);
+  button1.parent('menu-id')
+  button1.addClass('button');
 
 
   slider = createSlider(1, 200, 50);
@@ -37,7 +62,7 @@ function setup() {
   slider3.parent('menu-id')
   slider3.addClass('slider');
 
-  slider4 = createSlider(0, 100, 50);
+  slider4 = createSlider(0, 200, 50);
   slider4.parent('menu-id')
   slider4.addClass('slider');
 
@@ -69,17 +94,7 @@ function setup() {
   slider11.parent('menu-id')
   slider11.addClass('slider');
 
-  slider12 = createSlider(0, 360, 1);
-  slider12.parent('menu-id')
-  slider12.addClass('slider');
 
-  slider13 = createSlider(0, 100, 50);
-  slider13.parent('menu-id')
-  slider13.addClass('slider');
-
-  slider14 = createSlider(0, 100, 50);
-  slider14.parent('menu-id')
-  slider14.addClass('slider');
 
 }
 
@@ -90,21 +105,15 @@ function draw() {
 
 
   ///////////////////////sliders////////////////////////
-  let val1 = slider.value();
   
-  let val2 = slider2.value();
-  let diceStep = val2
-
+  let val1 = slider.value();
+  let diceStep = slider2.value();
   let randomS = slider3.value();
+  distance = slider4.value();
 
-  let val4 = slider4.value();
-  distance = val4
-
-  let val5 = slider5.value();
-  cellsX = val5
-
-  let val6 = slider6.value();
-  cellsY = val6
+  cellsX = slider5.value();
+  cellsY = slider6.value();
+ 
 
   let translX = slider7.value();
   let translY = slider8.value();
@@ -113,16 +122,14 @@ function draw() {
 
   let val10 = slider10.value();
   
-
   let strokeW = slider11.value();
+
   ///////////colors////////////////
 
-  colorMode(HSL)
-  let H = slider12.value();
-  let S = slider13.value();
-  let L = slider14.value();
 
-  background(H, S, L);
+
+  background(colorPicker2.color());
+
   ////////////////////////////////
 
   randomSeed(randomS)
@@ -133,16 +140,13 @@ function draw() {
   square = val1;
   let sizes = [0, 0, square, square * 0.9, square * 0.8, square * 0.7, square * 0.6, square * 0.5, square * 0.4, square * 0.3, square * 0.2, square * 0.1];
 
-  // push()
-  // translate(windowWidth, windowHeight)
-  // scale(4)
-  // pop()
   
   for(let x = 0; x < cellsX; x++){
     for(let y = 0; y < cellsY; y++){
             
       let xpos = 400 + offset + x * distance
       let ypos = 400 + offset + y * distance
+
 
         for(let z = 0; z < sizes.length; z++) {
 
@@ -158,13 +162,23 @@ function draw() {
 
           blob = sizes[dice];
 
+          // if (!colorSwitch){
+          //   stroke(0,0,0)
+            
+          // } else if (colorSwitch){
+          //   stroke(colorPicker.color());
+          // }
+          stroke(colorPicker.color())
+          
           let path = [
             {x: xpos - blob / 2 - dice2, y: ypos - blob / 2 - dice2},
             {x: xpos + blob / 2 - dice3, y: ypos - blob / 2 - dice4},
             {x: xpos + blob / 2 - dice5, y: ypos + blob / 2 - dice6},
             {x: xpos - blob / 2 - dice7, y: ypos + blob / 2 - dice8}
           ];
+          
           noFill()
+
           beginShape();
           vertex(path[0].x, path[0].y);
           vertex(path[1].x, path[1].y);
@@ -172,6 +186,7 @@ function draw() {
           vertex(path[3].x, path[3].y);
           endShape(CLOSE);
         }
+        
     }
   }
 

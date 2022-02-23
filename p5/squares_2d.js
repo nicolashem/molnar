@@ -33,21 +33,15 @@ function setup() {
   colorMode(HSL)
 
   colorPicker = createColorPicker('#000000');
-  colorPicker.position(0, height + 5);
+  colorPicker.position(20, height + 5);
 
   colorPicker2 = createColorPicker('#EEEEEE');
-  colorPicker2.position(0, height-50);
+  colorPicker2.position(20, height-50);
 
   // button = createButton('color on/off');
   // button.mousePressed(colorizer);
   // button.parent('menu-id')
   // button.addClass('button');
-
-
-  button1 = createButton('save image');
-  button1.mousePressed(saveImage);
-  button1.parent('menu-id')
-  button1.addClass('button');
 
 
   slider = createSlider(1, 400, 50);
@@ -82,11 +76,11 @@ function setup() {
   slider8.parent('menu-id')
   slider8.addClass('slider');
 
-  slider9 = createSlider(0, 10, 1, 0.1);
+  slider9 = createSlider(0, 0.1, 0, 0.01);
   slider9.parent('menu-id')
   slider9.addClass('slider');
 
-  slider10 = createSlider(1, 100, 50);
+  slider10 = createSlider(1, 100, 1);
   slider10.parent('menu-id')
   slider10.addClass('slider');
 
@@ -95,15 +89,19 @@ function setup() {
   slider11.addClass('slider');
 
 
+  button1 = createButton('save image');
+  button1.mousePressed(saveImage);
+  button1.parent('menu-id')
+  button1.addClass('button');
+
+
 
 }
 
 function draw() {
-  //background(255);
 
-  //(windowWidth/2, windowHeight/2)
-
-
+  noFill()
+  
   ///////////////////////sliders////////////////////////
   
   let val1 = slider.value();
@@ -120,13 +118,11 @@ function draw() {
   
   let strokeW = slider11.value();
 
-  ///////////colors////////////////
-
-
+  ///////////////////////////////////////////////////
 
   background(colorPicker2.color());
 
-  ////////////////////////////////
+  ///////////////////////////////////////////////////
 
   randomSeed(randomS)
   translate(translX,translY)
@@ -137,17 +133,18 @@ function draw() {
   // pop()
   // rotate(val9)
  
-
+  
   let square = 50;
   square = val1;
   let sizes = [0, 0, square, square * 0.9, square * 0.8, square * 0.7, square * 0.6, square * 0.5, square * 0.4, square * 0.3, square * 0.2, square * 0.1];
 
-  
+  rotate(val9)
   for(let x = 0; x < cellsX; x++){
     for(let y = 0; y < cellsY; y++){
             
-      let xpos = 400 + offset + x * distance
-      let ypos = 400 + offset + y * distance
+      let xpos = 375 + offset + x * distance
+      let ypos = 420 + offset + y * distance
+      rotate(val9)
 
 
         for(let z = 0; z < sizes.length; z++) {
@@ -162,8 +159,6 @@ function draw() {
           let dice7 = random() * diceStep
           let dice8 = random() * diceStep
 
-          
-
           blob = sizes[dice];
 
           // if (!colorSwitch){
@@ -173,17 +168,16 @@ function draw() {
           //   stroke(colorPicker.color());
           // }
 
-
           stroke(colorPicker.color())
-          rotate(val9)
+
+          
           let path = [
             {x: xpos - blob / 2 - dice2, y: ypos - blob / 2 - dice2},
             {x: xpos + blob / 2 - dice3, y: ypos - blob / 2 - dice4},
             {x: xpos + blob / 2 - dice5, y: ypos + blob / 2 - dice6},
             {x: xpos - blob / 2 - dice7, y: ypos + blob / 2 - dice8}
           ];
-          
-          noFill()
+
 
           beginShape();
           vertex(path[0].x, path[0].y);

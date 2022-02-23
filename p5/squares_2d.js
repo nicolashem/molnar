@@ -32,10 +32,10 @@ function setup() {
 
   colorMode(HSL)
 
-  colorPicker = createColorPicker('#ed225d');
+  colorPicker = createColorPicker('#000000');
   colorPicker.position(0, height + 5);
 
-  colorPicker2 = createColorPicker('#ed225d');
+  colorPicker2 = createColorPicker('#EEEEEE');
   colorPicker2.position(0, height-50);
 
   // button = createButton('color on/off');
@@ -50,7 +50,7 @@ function setup() {
   button1.addClass('button');
 
 
-  slider = createSlider(1, 200, 50);
+  slider = createSlider(1, 400, 50);
   slider.parent('menu-id')
   slider.addClass('slider');
 
@@ -74,11 +74,11 @@ function setup() {
   slider6.parent('menu-id')
   slider6.addClass('slider');
 
-  slider7 = createSlider(-200, 200, 0);
+  slider7 = createSlider(-300, 300, 0);
   slider7.parent('menu-id')
   slider7.addClass('slider');
 
-  slider8 = createSlider(-200, 200, 0);
+  slider8 = createSlider(-500, 500, 0);
   slider8.parent('menu-id')
   slider8.addClass('slider');
 
@@ -110,14 +110,10 @@ function draw() {
   let diceStep = slider2.value();
   let randomS = slider3.value();
   distance = slider4.value();
-
   cellsX = slider5.value();
   cellsY = slider6.value();
- 
-
   let translX = slider7.value();
   let translY = slider8.value();
-
   let val9 = slider9.value();
 
   let val10 = slider10.value();
@@ -135,6 +131,12 @@ function draw() {
   randomSeed(randomS)
   translate(translX,translY)
   strokeWeight(strokeW)
+
+  // push()
+  // translate(width/2, height/2)
+  // pop()
+  // rotate(val9)
+ 
 
   let square = 50;
   square = val1;
@@ -160,6 +162,8 @@ function draw() {
           let dice7 = random() * diceStep
           let dice8 = random() * diceStep
 
+          
+
           blob = sizes[dice];
 
           // if (!colorSwitch){
@@ -168,8 +172,10 @@ function draw() {
           // } else if (colorSwitch){
           //   stroke(colorPicker.color());
           // }
+
+
           stroke(colorPicker.color())
-          
+          rotate(val9)
           let path = [
             {x: xpos - blob / 2 - dice2, y: ypos - blob / 2 - dice2},
             {x: xpos + blob / 2 - dice3, y: ypos - blob / 2 - dice4},

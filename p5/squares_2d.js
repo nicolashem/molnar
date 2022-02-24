@@ -136,6 +136,7 @@ function draw() {
   
   let square = 50;
   square = val1;
+  
   let sizes = [0, 0, square, square * 0.9, square * 0.8, square * 0.7, square * 0.6, square * 0.5, square * 0.4, square * 0.3, square * 0.2, square * 0.1];
 
   rotate(val9)
